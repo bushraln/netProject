@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dtcollegeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="st_hour" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="end_hour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="classroom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Moad1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Moad2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="registStudent2Course" Relationship="Self.FK_registStudent2Course_course" FromRole="course" ToRole="registStudent2Course" />
+  </EntityType>
+  <EntityType Name="Lecturer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="registStudent2Course" Relationship="Self.FK_registStudent2Course_Lecturer" FromRole="Lecturer" ToRole="registStudent2Course" />
+  </EntityType>
+  <EntityType Name="registStudent2Course">
+    <Key>
+      <PropertyRef Name="Id_lecturer" />
+    </Key>
+    <Property Name="Id_lecturer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_course" Type="Int32" />
+    <Property Name="id_student" Type="Int32" />
+    <NavigationProperty Name="course" Relationship="Self.FK_registStudent2Course_course" FromRole="registStudent2Course" ToRole="course" />
+    <NavigationProperty Name="Lecturer" Relationship="Self.FK_registStudent2Course_Lecturer" FromRole="registStudent2Course" ToRole="Lecturer" />
+    <NavigationProperty Name="student" Relationship="Self.FK_registStudent2Course_student" FromRole="registStudent2Course" ToRole="student" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="registStudent2Course" Relationship="Self.FK_registStudent2Course_student" FromRole="student" ToRole="registStudent2Course" />
+  </EntityType>
+  <Association Name="FK_registStudent2Course_course">
+    <End Role="course" Type="Self.course" Multiplicity="0..1" />
+    <End Role="registStudent2Course" Type="Self.registStudent2Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="registStudent2Course">
+        <PropertyRef Name="id_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_registStudent2Course_Lecturer">
+    <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="1" />
+    <End Role="registStudent2Course" Type="Self.registStudent2Course" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="registStudent2Course">
+        <PropertyRef Name="Id_lecturer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_registStudent2Course_student">
+    <End Role="student" Type="Self.student" Multiplicity="0..1" />
+    <End Role="registStudent2Course" Type="Self.registStudent2Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="registStudent2Course">
+        <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dtcollegeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="courses" EntityType="Self.course" />
+    <EntitySet Name="Lecturers" EntityType="Self.Lecturer" />
+    <EntitySet Name="registStudent2Course" EntityType="Self.registStudent2Course" />
+    <EntitySet Name="students" EntityType="Self.student" />
+    <AssociationSet Name="FK_registStudent2Course_course" Association="Self.FK_registStudent2Course_course">
+      <End Role="course" EntitySet="courses" />
+      <End Role="registStudent2Course" EntitySet="registStudent2Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_registStudent2Course_Lecturer" Association="Self.FK_registStudent2Course_Lecturer">
+      <End Role="Lecturer" EntitySet="Lecturers" />
+      <End Role="registStudent2Course" EntitySet="registStudent2Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_registStudent2Course_student" Association="Self.FK_registStudent2Course_student">
+      <End Role="student" EntitySet="students" />
+      <End Role="registStudent2Course" EntitySet="registStudent2Course" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

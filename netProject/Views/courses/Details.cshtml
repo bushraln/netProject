@@ -1,0 +1,72 @@
+﻿@model netProject.Models.course
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.st_hour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.st_hour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_hour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_hour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.classroom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.classroom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Moad1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Moad1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Moad2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Moad2)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

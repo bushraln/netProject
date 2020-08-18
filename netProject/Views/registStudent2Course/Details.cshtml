@@ -1,0 +1,50 @@
+﻿@model netProject.Models.registStudent2Course
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>registStudent2Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.course.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.course.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.course.day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.course.day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lecturer.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lecturer.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.student.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.student.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_lecturer }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

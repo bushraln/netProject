@@ -1,0 +1,48 @@
+﻿@model IEnumerable<netProject.Models.registStudent2Course>
+
+@{
+    ViewBag.Title = "Index";
+   
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.course.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lecturer.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.student.Id)
+
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.course.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lecturer.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.student.Id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id_lecturer }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id_lecturer }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id_lecturer })
+        </td>
+    </tr>
+}
+
+</table>

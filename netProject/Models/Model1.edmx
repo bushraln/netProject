@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dtcollegeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="day" Type="varchar" MaxLength="50" />
+          <Property Name="st_hour" Type="nchar" MaxLength="10" />
+          <Property Name="end_hour" Type="varchar" MaxLength="50" />
+          <Property Name="classroom" Type="varchar" MaxLength="50" />
+          <Property Name="Moad1" Type="varchar" MaxLength="50" />
+          <Property Name="Moad2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Lecturer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="registStudent2Course">
+          <Key>
+            <PropertyRef Name="Id_lecturer" />
+          </Key>
+          <Property Name="Id_lecturer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_course" Type="int" />
+          <Property Name="id_student" Type="int" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_registStudent2Course_course">
+          <End Role="course" Type="Self.course" Multiplicity="0..1" />
+          <End Role="registStudent2Course" Type="Self.registStudent2Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="registStudent2Course">
+              <PropertyRef Name="id_course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_registStudent2Course_Lecturer">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="1" />
+          <End Role="registStudent2Course" Type="Self.registStudent2Course" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="registStudent2Course">
+              <PropertyRef Name="Id_lecturer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_registStudent2Course_student">
+          <End Role="student" Type="Self.student" Multiplicity="0..1" />
+          <End Role="registStudent2Course" Type="Self.registStudent2Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="registStudent2Course">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dtcollegeModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="course" EntityType="Self.course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lecturer" EntityType="Self.Lecturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="registStudent2Course" EntityType="Self.registStudent2Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_registStudent2Course_course" Association="Self.FK_registStudent2Course_course">
+            <End Role="course" EntitySet="course" />
+            <End Role="registStudent2Course" EntitySet="registStudent2Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_registStudent2Course_Lecturer" Association="Self.FK_registStudent2Course_Lecturer">
+            <End Role="Lecturer" EntitySet="Lecturer" />
+            <End Role="registStudent2Course" EntitySet="registStudent2Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_registStudent2Course_student" Association="Self.FK_registStudent2Course_student">
+            <End Role="student" EntitySet="student" />
+            <End Role="registStudent2Course" EntitySet="registStudent2Course" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dtcollegeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="st_hour" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="end_hour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="classroom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Moad1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Moad2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registStudent2Course" Relationship="Self.FK_registStudent2Course_course" FromRole="course" ToRole="registStudent2Course" />
+        </EntityType>
+        <EntityType Name="Lecturer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registStudent2Course" Relationship="Self.FK_registStudent2Course_Lecturer" FromRole="Lecturer" ToRole="registStudent2Course" />
+        </EntityType>
+        <EntityType Name="registStudent2Course">
+          <Key>
+            <PropertyRef Name="Id_lecturer" />
+          </Key>
+          <Property Name="Id_lecturer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_course" Type="Int32" />
+          <Property Name="id_student" Type="Int32" />
+          <NavigationProperty Name="course" Relationship="Self.FK_registStudent2Course_course" FromRole="registStudent2Course" ToRole="course" />
+          <NavigationProperty Name="Lecturer" Relationship="Self.FK_registStudent2Course_Lecturer" FromRole="registStudent2Course" ToRole="Lecturer" />
+          <NavigationProperty Name="student" Relationship="Self.FK_registStudent2Course_student" FromRole="registStudent2Course" ToRole="student" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registStudent2Course" Relationship="Self.FK_registStudent2Course_student" FromRole="student" ToRole="registStudent2Course" />
+        </EntityType>
+        <Association Name="FK_registStudent2Course_course">
+          <End Role="course" Type="Self.course" Multiplicity="0..1" />
+          <End Role="registStudent2Course" Type="Self.registStudent2Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="course">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="registStudent2Course">
+              <PropertyRef Name="id_course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_registStudent2Course_Lecturer">
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="1" />
+          <End Role="registStudent2Course" Type="Self.registStudent2Course" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="registStudent2Course">
+              <PropertyRef Name="Id_lecturer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_registStudent2Course_student">
+          <End Role="student" Type="Self.student" Multiplicity="0..1" />
+          <End Role="registStudent2Course" Type="Self.registStudent2Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="registStudent2Course">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dtcollegeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="courses" EntityType="Self.course" />
+          <EntitySet Name="Lecturers" EntityType="Self.Lecturer" />
+          <EntitySet Name="registStudent2Course" EntityType="Self.registStudent2Course" />
+          <EntitySet Name="students" EntityType="Self.student" />
+          <AssociationSet Name="FK_registStudent2Course_course" Association="Self.FK_registStudent2Course_course">
+            <End Role="course" EntitySet="courses" />
+            <End Role="registStudent2Course" EntitySet="registStudent2Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_registStudent2Course_Lecturer" Association="Self.FK_registStudent2Course_Lecturer">
+            <End Role="Lecturer" EntitySet="Lecturers" />
+            <End Role="registStudent2Course" EntitySet="registStudent2Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_registStudent2Course_student" Association="Self.FK_registStudent2Course_student">
+            <End Role="student" EntitySet="students" />
+            <End Role="registStudent2Course" EntitySet="registStudent2Course" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dtcollegeModelStoreContainer" CdmEntityContainer="dtcollegeEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="dtcollegeModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="courses">
+            <EntityTypeMapping TypeName="dtcollegeModel.course">
+              <MappingFragment StoreEntitySet="course">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="st_hour" ColumnName="st_hour" />
+                <ScalarProperty Name="end_hour" ColumnName="end_hour" />
+                <ScalarProperty Name="classroom" ColumnName="classroom" />
+                <ScalarProperty Name="Moad1" ColumnName="Moad1" />
+                <ScalarProperty Name="Moad2" ColumnName="Moad2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lecturers">
+            <EntityTypeMapping TypeName="dtcollegeModel.Lecturer">
+              <MappingFragment StoreEntitySet="Lecturer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registStudent2Course">
+            <EntityTypeMapping TypeName="dtcollegeModel.registStudent2Course">
+              <MappingFragment StoreEntitySet="registStudent2Course">
+                <ScalarProperty Name="Id_lecturer" ColumnName="Id_lecturer" />
+                <ScalarProperty Name="id_course" ColumnName="id_course" />
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="dtcollegeModel.student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

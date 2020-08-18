@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dtcollegeModelStoreContainer" CdmEntityContainer="dtcollegeEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="dtcollegeModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="courses">
+      <EntityTypeMapping TypeName="dtcollegeModel.course">
+        <MappingFragment StoreEntitySet="course">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="day" ColumnName="day" />
+          <ScalarProperty Name="st_hour" ColumnName="st_hour" />
+          <ScalarProperty Name="end_hour" ColumnName="end_hour" />
+          <ScalarProperty Name="classroom" ColumnName="classroom" />
+          <ScalarProperty Name="Moad1" ColumnName="Moad1" />
+          <ScalarProperty Name="Moad2" ColumnName="Moad2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lecturers">
+      <EntityTypeMapping TypeName="dtcollegeModel.Lecturer">
+        <MappingFragment StoreEntitySet="Lecturer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="registStudent2Course">
+      <EntityTypeMapping TypeName="dtcollegeModel.registStudent2Course">
+        <MappingFragment StoreEntitySet="registStudent2Course">
+          <ScalarProperty Name="Id_lecturer" ColumnName="Id_lecturer" />
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="students">
+      <EntityTypeMapping TypeName="dtcollegeModel.student">
+        <MappingFragment StoreEntitySet="student">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

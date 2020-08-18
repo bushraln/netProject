@@ -1,0 +1,47 @@
+﻿@model  netProject.Models.registStudent2Course
+
+
+@{
+    ViewBag.Title = "register to course";
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+<br />
+<br />
+<br />
+<p>
+    @Html.ActionLink(" Update", "UpdateG")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model=>model.id_student)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinalGrade)
+        </th>
+        <th></th>
+
+    </tr>
+
+    @*@foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.id_student)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinalProject)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditExam", new { id= item.id}) 
+            
+            </td>
+        </tr>
+    }*@
+
+</table>

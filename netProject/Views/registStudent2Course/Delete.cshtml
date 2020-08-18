@@ -1,0 +1,51 @@
+﻿@model netProject.Models.registStudent2Course
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>registStudent2Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.course.Id)
+        </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.course.day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.course.day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lecturer.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lecturer.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.student.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.student.FirstName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
